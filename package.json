@@ -1,0 +1,36 @@
+{
+  "name": "userhobbies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -x ts-node src/main.ts",
+    "generate": "tsoa routes && tsoa swagger",
+    "test": "jest"
+  }, 
+  
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.4.4",
+    "supertest": "^6.1.4",
+    "swagger-ui-express": "^4.0.2",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^7.0.1",
+    "tsoa": "^2.3.8",
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/jest": "^26.0.24",
+    "@types/mongodb": "^3.1.18",
+    "@types/mongoose": "^5.3.7",
+    "@types/node": "^10.12.15",
+    "jest": "^27.0.6",
+    "nodemon": "^1.18.9"
+  }
+}

@@ -1,0 +1,337 @@
+{
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"tags": [
+		{
+		  "name": "hobbies",
+		  "description": "Everything about your Hobbies"
+		},
+		
+		{
+		  "name": "user",
+		  "description": "Operations about user"
+		}
+	  ],
+	"definitions": {
+		"User": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"hobbies": {
+					"type": "string"
+				}
+			
+			},
+			"required": [
+				"_id",
+				"name"
+			],
+			"type": "object"
+		},
+		"Hobbies": {
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"year": {
+					"type": "string"
+				},
+				"passionLevel": {
+					"type": "string"
+				}
+			
+			},
+			"required": [
+				"_id",
+				"name",
+				"year"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "UserHobbies",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/users": {
+			"get": {
+				"tags": [
+					"user"
+				  ],
+				"operationId": "GetAll",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			
+			"post": {
+				"tags": [
+					"user"
+				  ],
+				"operationId": "Create",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"schema": {
+							"properties": {
+								"name": {
+									"type": "string"
+								},
+								"hobbies": {
+									"type": "string"
+								}
+							},
+							"title": "CreateBody",
+							"type": "object",
+							"required": [
+								"name",
+								"hobbies"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/users/{id}": {
+			"put": {
+				"tags": [
+					"user"
+				  ],
+				"operationId": "Update",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"schema": {
+							"properties": {
+								"name": {
+									"type": "string"
+								},
+								"hobbies": {
+									"type": "string"
+								}
+							},
+							"title": "UpdateBody",
+							"type": "object",
+							"required": [
+								"name", "hobbies"
+							]
+						}
+					}
+				]
+			},
+			"delete": {
+				"tags": [
+					"user"
+				  ],
+				"operationId": "Remove",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/hobbies": {
+			"post": {
+			  "tags": [
+				"hobbies"
+			  ],
+			  "summary": "Add a new hobby",
+			  "description": "",
+			  "operationId": "addHobby",
+			  "consumes": [
+				"application/json",
+				"application/xml"
+			  ],
+			  "produces": [
+				"application/xml",
+				"application/json"
+			  ],
+			  "parameters": [
+				{
+				  "in": "body",
+				  "name": "body",
+				  "description": "Pet object that needs to be added to the store",
+				  "required": true,
+				  "schema": {
+					"$ref": "#/definitions/Hobbies"
+				  }
+				}
+			  ],
+			  "responses": {
+				"405": {
+				  "description": "Invalid input"
+				}
+			  },
+			  "security": [
+				{
+				  "petstore_auth": [
+					"write:pets",
+					"read:pets"
+				  ]
+				}
+			  ]
+			}
+		},
+		"/hobbies/{id}": {	
+		"delete": {
+			"tags": [
+				"hobbies"
+			  ],
+			"operationId": "Remove",
+			"produces": [
+				"application/json"
+			],
+			"responses": {
+				"204": {
+					"description": "No content"
+				}
+			},
+			"security": [],
+			"parameters": [
+				{
+					"in": "path",
+					"name": "id",
+					"required": true,
+					"type": "string"
+				}
+			]
+		}},
+		"/hobbies/{id}/": {
+			"put": {
+				"tags": [
+					"hobbies"
+				  ],
+				"operationId": "Update",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"schema": {
+							"properties": {
+						
+								"passionLevel":{
+									"type": "string"
+								}
+							},
+							"title": "UpdateBody",
+							"type": "object",
+							"required": [
+								"passionLevel"
+							]
+						}
+					}
+				]
+			}
+	},
+	"/hobbies/": {
+	"get": {
+		"tags": [
+			"hobbies"
+		  ],
+		"operationId": "GetAll",
+		"produces": [
+			"application/json"
+		],
+		"responses": {
+			"200": {
+				"description": "Ok",
+				"schema": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Hobbies"
+					}
+				}
+			}
+		},
+		"security": [],
+		"parameters": []
+	}
+}
+},
+	
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}
