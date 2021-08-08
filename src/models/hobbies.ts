@@ -1,4 +1,6 @@
-import * as mongoose from 'mongoose';
+const mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+
 
 interface Hobbies {
 	_id: string;
@@ -8,6 +10,7 @@ interface Hobbies {
 }
 
 const HobbiesSchema = new mongoose.Schema({
+	id: { type: Schema.ObjectId, ref: 'User' },
 	name: String,
 	year: String,
 	passionLevel: String
